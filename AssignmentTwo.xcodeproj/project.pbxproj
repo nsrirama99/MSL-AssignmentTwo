@@ -15,6 +15,13 @@
 		2EE7A67226FBD0F200744C38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EE7A67026FBD0F200744C38 /* LaunchScreen.storyboard */; };
 		2EE7A67D26FBD0F300744C38 /* AssignmentTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A67C26FBD0F300744C38 /* AssignmentTwoTests.swift */; };
 		2EE7A68826FBD0F300744C38 /* AssignmentTwoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A68726FBD0F300744C38 /* AssignmentTwoUITests.swift */; };
+		2EE7A69626FBD3BA00744C38 /* TableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69526FBD3BA00744C38 /* TableTableViewController.swift */; };
+		2EE7A69826FBD54200744C38 /* ViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69726FBD54200744C38 /* ViewControllerTwo.swift */; };
+		2EE7A6A226FBD60B00744C38 /* MetalGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69B26FBD60A00744C38 /* MetalGraph.swift */; };
+		2EE7A6A326FBD60B00744C38 /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69D26FBD60A00744C38 /* Novocaine.m */; };
+		2EE7A6A426FBD60B00744C38 /* AudioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69E26FBD60A00744C38 /* AudioModel.swift */; };
+		2EE7A6A526FBD60B00744C38 /* FFTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69F26FBD60B00744C38 /* FFTHelper.m */; };
+		2EE7A6A626FBD60B00744C38 /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A6A026FBD60B00744C38 /* CircularBuffer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,17 @@
 		2EE7A68326FBD0F300744C38 /* AssignmentTwoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AssignmentTwoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EE7A68726FBD0F300744C38 /* AssignmentTwoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTwoUITests.swift; sourceTree = "<group>"; };
 		2EE7A68926FBD0F300744C38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2EE7A69526FBD3BA00744C38 /* TableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTableViewController.swift; sourceTree = "<group>"; };
+		2EE7A69726FBD54200744C38 /* ViewControllerTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTwo.swift; sourceTree = "<group>"; };
+		2EE7A69926FBD60800744C38 /* AssignmentTwo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AssignmentTwo-Bridging-Header.h"; sourceTree = "<group>"; };
+		2EE7A69A26FBD60900744C38 /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircularBuffer.h; path = ../../../AudioLabSwift/AudioDSPUtils/CircularBuffer.h; sourceTree = "<group>"; };
+		2EE7A69B26FBD60A00744C38 /* MetalGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MetalGraph.swift; path = ../../../AudioLabSwift/AudioLabSwift/MetalGraph.swift; sourceTree = "<group>"; };
+		2EE7A69C26FBD60A00744C38 /* FFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FFTHelper.h; path = ../../../AudioLabSwift/AudioDSPUtils/FFTHelper.h; sourceTree = "<group>"; };
+		2EE7A69D26FBD60A00744C38 /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Novocaine.m; path = ../../../AudioLabSwift/AudioDSPUtils/Novocaine.m; sourceTree = "<group>"; };
+		2EE7A69E26FBD60A00744C38 /* AudioModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioModel.swift; path = ../../../AudioLabSwift/AudioLabSwift/AudioModel.swift; sourceTree = "<group>"; };
+		2EE7A69F26FBD60B00744C38 /* FFTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FFTHelper.m; path = ../../../AudioLabSwift/AudioDSPUtils/FFTHelper.m; sourceTree = "<group>"; };
+		2EE7A6A026FBD60B00744C38 /* CircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CircularBuffer.m; path = ../../../AudioLabSwift/AudioDSPUtils/CircularBuffer.m; sourceTree = "<group>"; };
+		2EE7A6A126FBD60B00744C38 /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Novocaine.h; path = ../../../AudioLabSwift/AudioDSPUtils/Novocaine.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +117,24 @@
 		2EE7A66426FBD0EE00744C38 /* AssignmentTwo */ = {
 			isa = PBXGroup;
 			children = (
+				2EE7A66926FBD0EE00744C38 /* ViewController.swift */,
+				2EE7A69726FBD54200744C38 /* ViewControllerTwo.swift */,
+				2EE7A66B26FBD0EE00744C38 /* Main.storyboard */,
+				2EE7A69526FBD3BA00744C38 /* TableTableViewController.swift */,
+				2EE7A69E26FBD60A00744C38 /* AudioModel.swift */,
+				2EE7A69A26FBD60900744C38 /* CircularBuffer.h */,
+				2EE7A6A026FBD60B00744C38 /* CircularBuffer.m */,
+				2EE7A69C26FBD60A00744C38 /* FFTHelper.h */,
+				2EE7A69F26FBD60B00744C38 /* FFTHelper.m */,
+				2EE7A6A126FBD60B00744C38 /* Novocaine.h */,
+				2EE7A69D26FBD60A00744C38 /* Novocaine.m */,
 				2EE7A66526FBD0EE00744C38 /* AppDelegate.swift */,
 				2EE7A66726FBD0EE00744C38 /* SceneDelegate.swift */,
-				2EE7A66926FBD0EE00744C38 /* ViewController.swift */,
-				2EE7A66B26FBD0EE00744C38 /* Main.storyboard */,
+				2EE7A69B26FBD60A00744C38 /* MetalGraph.swift */,
 				2EE7A66E26FBD0F200744C38 /* Assets.xcassets */,
 				2EE7A67026FBD0F200744C38 /* LaunchScreen.storyboard */,
 				2EE7A67326FBD0F200744C38 /* Info.plist */,
+				2EE7A69926FBD60800744C38 /* AssignmentTwo-Bridging-Header.h */,
 			);
 			path = AssignmentTwo;
 			sourceTree = "<group>";
@@ -195,6 +224,7 @@
 				TargetAttributes = {
 					2EE7A66126FBD0EE00744C38 = {
 						CreatedOnToolsVersion = 12.5.1;
+						LastSwiftMigration = 1250;
 					};
 					2EE7A67726FBD0F300744C38 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -258,8 +288,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EE7A6A626FBD60B00744C38 /* CircularBuffer.m in Sources */,
+				2EE7A69826FBD54200744C38 /* ViewControllerTwo.swift in Sources */,
+				2EE7A69626FBD3BA00744C38 /* TableTableViewController.swift in Sources */,
+				2EE7A6A226FBD60B00744C38 /* MetalGraph.swift in Sources */,
+				2EE7A6A326FBD60B00744C38 /* Novocaine.m in Sources */,
 				2EE7A66A26FBD0EE00744C38 /* ViewController.swift in Sources */,
+				2EE7A6A526FBD60B00744C38 /* FFTHelper.m in Sources */,
 				2EE7A66626FBD0EE00744C38 /* AppDelegate.swift in Sources */,
+				2EE7A6A426FBD60B00744C38 /* AudioModel.swift in Sources */,
 				2EE7A66826FBD0EE00744C38 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +473,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F69WJ27LN4;
 				INFOPLIST_FILE = AssignmentTwo/Info.plist;
@@ -445,6 +483,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SMU.AssignmentTwo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AssignmentTwo/AssignmentTwo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -455,6 +495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F69WJ27LN4;
 				INFOPLIST_FILE = AssignmentTwo/Info.plist;
@@ -464,6 +505,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = SMU.AssignmentTwo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AssignmentTwo/AssignmentTwo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
