@@ -17,11 +17,11 @@
 		2EE7A68826FBD0F300744C38 /* AssignmentTwoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A68726FBD0F300744C38 /* AssignmentTwoUITests.swift */; };
 		2EE7A69626FBD3BA00744C38 /* TableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69526FBD3BA00744C38 /* TableTableViewController.swift */; };
 		2EE7A69826FBD54200744C38 /* ViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69726FBD54200744C38 /* ViewControllerTwo.swift */; };
-		2EE7A6A226FBD60B00744C38 /* MetalGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69B26FBD60A00744C38 /* MetalGraph.swift */; };
-		2EE7A6A326FBD60B00744C38 /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69D26FBD60A00744C38 /* Novocaine.m */; };
-		2EE7A6A426FBD60B00744C38 /* AudioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69E26FBD60A00744C38 /* AudioModel.swift */; };
-		2EE7A6A526FBD60B00744C38 /* FFTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A69F26FBD60B00744C38 /* FFTHelper.m */; };
-		2EE7A6A626FBD60B00744C38 /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7A6A026FBD60B00744C38 /* CircularBuffer.m */; };
+		2EEF7820270139DC004ABE6F /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF781B270139DC004ABE6F /* Novocaine.m */; };
+		2EEF7821270139DC004ABE6F /* AudioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF781D270139DC004ABE6F /* AudioModel.swift */; };
+		2EEF7822270139DC004ABE6F /* MetalGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF781E270139DC004ABE6F /* MetalGraph.swift */; };
+		2EEF7826270139F1004ABE6F /* FFTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF7823270139F0004ABE6F /* FFTHelper.m */; };
+		2EEF7827270139F1004ABE6F /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF7825270139F1004ABE6F /* CircularBuffer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,14 +59,14 @@
 		2EE7A69526FBD3BA00744C38 /* TableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTableViewController.swift; sourceTree = "<group>"; };
 		2EE7A69726FBD54200744C38 /* ViewControllerTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTwo.swift; sourceTree = "<group>"; };
 		2EE7A69926FBD60800744C38 /* AssignmentTwo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AssignmentTwo-Bridging-Header.h"; sourceTree = "<group>"; };
-		2EE7A69A26FBD60900744C38 /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircularBuffer.h; path = ../../../AudioLabSwift/AudioDSPUtils/CircularBuffer.h; sourceTree = "<group>"; };
-		2EE7A69B26FBD60A00744C38 /* MetalGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MetalGraph.swift; path = ../../../AudioLabSwift/AudioLabSwift/MetalGraph.swift; sourceTree = "<group>"; };
-		2EE7A69C26FBD60A00744C38 /* FFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FFTHelper.h; path = ../../../AudioLabSwift/AudioDSPUtils/FFTHelper.h; sourceTree = "<group>"; };
-		2EE7A69D26FBD60A00744C38 /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Novocaine.m; path = ../../../AudioLabSwift/AudioDSPUtils/Novocaine.m; sourceTree = "<group>"; };
-		2EE7A69E26FBD60A00744C38 /* AudioModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioModel.swift; path = ../../../AudioLabSwift/AudioLabSwift/AudioModel.swift; sourceTree = "<group>"; };
-		2EE7A69F26FBD60B00744C38 /* FFTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FFTHelper.m; path = ../../../AudioLabSwift/AudioDSPUtils/FFTHelper.m; sourceTree = "<group>"; };
-		2EE7A6A026FBD60B00744C38 /* CircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CircularBuffer.m; path = ../../../AudioLabSwift/AudioDSPUtils/CircularBuffer.m; sourceTree = "<group>"; };
-		2EE7A6A126FBD60B00744C38 /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Novocaine.h; path = ../../../AudioLabSwift/AudioDSPUtils/Novocaine.h; sourceTree = "<group>"; };
+		2EEF781B270139DC004ABE6F /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Novocaine.m; sourceTree = "<group>"; };
+		2EEF781C270139DC004ABE6F /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularBuffer.h; sourceTree = "<group>"; };
+		2EEF781D270139DC004ABE6F /* AudioModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioModel.swift; sourceTree = "<group>"; };
+		2EEF781E270139DC004ABE6F /* MetalGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalGraph.swift; sourceTree = "<group>"; };
+		2EEF781F270139DC004ABE6F /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Novocaine.h; sourceTree = "<group>"; };
+		2EEF7823270139F0004ABE6F /* FFTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFTHelper.m; sourceTree = "<group>"; };
+		2EEF7824270139F1004ABE6F /* FFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTHelper.h; sourceTree = "<group>"; };
+		2EEF7825270139F1004ABE6F /* CircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularBuffer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,16 +121,16 @@
 				2EE7A69726FBD54200744C38 /* ViewControllerTwo.swift */,
 				2EE7A66B26FBD0EE00744C38 /* Main.storyboard */,
 				2EE7A69526FBD3BA00744C38 /* TableTableViewController.swift */,
-				2EE7A69E26FBD60A00744C38 /* AudioModel.swift */,
-				2EE7A69A26FBD60900744C38 /* CircularBuffer.h */,
-				2EE7A6A026FBD60B00744C38 /* CircularBuffer.m */,
-				2EE7A69C26FBD60A00744C38 /* FFTHelper.h */,
-				2EE7A69F26FBD60B00744C38 /* FFTHelper.m */,
-				2EE7A6A126FBD60B00744C38 /* Novocaine.h */,
-				2EE7A69D26FBD60A00744C38 /* Novocaine.m */,
+				2EEF781D270139DC004ABE6F /* AudioModel.swift */,
+				2EEF781C270139DC004ABE6F /* CircularBuffer.h */,
+				2EEF781E270139DC004ABE6F /* MetalGraph.swift */,
+				2EEF781F270139DC004ABE6F /* Novocaine.h */,
+				2EEF7825270139F1004ABE6F /* CircularBuffer.m */,
+				2EEF7824270139F1004ABE6F /* FFTHelper.h */,
+				2EEF7823270139F0004ABE6F /* FFTHelper.m */,
+				2EEF781B270139DC004ABE6F /* Novocaine.m */,
 				2EE7A66526FBD0EE00744C38 /* AppDelegate.swift */,
 				2EE7A66726FBD0EE00744C38 /* SceneDelegate.swift */,
-				2EE7A69B26FBD60A00744C38 /* MetalGraph.swift */,
 				2EE7A66E26FBD0F200744C38 /* Assets.xcassets */,
 				2EE7A67026FBD0F200744C38 /* LaunchScreen.storyboard */,
 				2EE7A67326FBD0F200744C38 /* Info.plist */,
@@ -288,15 +288,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EE7A6A626FBD60B00744C38 /* CircularBuffer.m in Sources */,
+				2EEF7827270139F1004ABE6F /* CircularBuffer.m in Sources */,
+				2EEF7822270139DC004ABE6F /* MetalGraph.swift in Sources */,
+				2EEF7821270139DC004ABE6F /* AudioModel.swift in Sources */,
 				2EE7A69826FBD54200744C38 /* ViewControllerTwo.swift in Sources */,
 				2EE7A69626FBD3BA00744C38 /* TableTableViewController.swift in Sources */,
-				2EE7A6A226FBD60B00744C38 /* MetalGraph.swift in Sources */,
-				2EE7A6A326FBD60B00744C38 /* Novocaine.m in Sources */,
+				2EEF7820270139DC004ABE6F /* Novocaine.m in Sources */,
+				2EEF7826270139F1004ABE6F /* FFTHelper.m in Sources */,
 				2EE7A66A26FBD0EE00744C38 /* ViewController.swift in Sources */,
-				2EE7A6A526FBD60B00744C38 /* FFTHelper.m in Sources */,
 				2EE7A66626FBD0EE00744C38 /* AppDelegate.swift in Sources */,
-				2EE7A6A426FBD60B00744C38 /* AudioModel.swift in Sources */,
 				2EE7A66826FBD0EE00744C38 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
