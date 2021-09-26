@@ -8,16 +8,75 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    //These 2 labels will be used to display the "current" max frequencies taken from the microphone
     @IBOutlet weak var Freq2Label: UILabel!
     @IBOutlet weak var Freq1Label: UILabel!
     
+    var peaks:[Float] = []
     
+    
+    //buffer size will determine accuracy of the fft
+    //we want accuracy of 6Hz, 48100/6 = ~8017 buffer size needed
+    //for standardization we will use a multiple of 1024, so 1024*8 will be the buffer size
+    struct AudioConstants{
+        static let AUDIO_BUFFER_SIZE = 1024*8
+    }
+    
+    // setup audio model
+    let audio = AudioModel(buffer_size: AudioConstants.AUDIO_BUFFER_SIZE)
+    lazy var graph:MetalGraph? = {
+        return MetalGraph(mainView: self.view)
+    }()
+    
+    //On View Startup
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // add in graphs for display
+        graph?.addGraph(withName: "fft",
+                        shouldNormalize: true,
+                        numPointsInGraph: AudioConstants.AUDIO_BUFFER_SIZE/2)
+        
+        graph?.addGraph(withName: "time",
+            shouldNormalize: false,
+            numPointsInGraph: AudioConstants.AUDIO_BUFFER_SIZE)
+        
+        
+        
+        // start up the audio model here, querying microphone
+        audio.startMicrophoneProcessing(withFps: 10)
+        audio.play()
+        
+        
+        // run the loop for updating the graph peridocially
+        Timer.scheduledTimer(timeInterval: 0.05, target: self,
+            selector: #selector(self.update),
+            userInfo: nil,
+            repeats: true)
+    }
+    
+    //when the user leaves the view, we want to nil the audio processing blocks
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        audio.endAudioProcessing()
     }
 
+    // periodically, update the graph with refreshed FFT Data
+    @objc
+    func update(){
+        self.graph?.updateGraph(
+            data: self.audio.fftData,
+            forKey: "fft"
+        )
+        
+        self.graph?.updateGraph(
+            data: self.audio.timeData,
+            forKey: "time"
+        )
+        
+        peaks = self.audio.fftPeaks
+    } //end updateGraph function
 
 }
 
