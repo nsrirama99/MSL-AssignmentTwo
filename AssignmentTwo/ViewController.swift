@@ -13,8 +13,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var Freq2Label: UILabel!
     @IBOutlet weak var Freq1Label: UILabel!
     
-    var peaks:[Float] = []
-    
+    var peaks:[Float:Float] = [:]
+    lazy var peak1Frequency:Float = 0.0
+    lazy var peak1Magnitude:Float = 0.0
+    lazy var peak2Frequency:Float = 0.0
+    lazy var peak2Magnitude:Float = 0.0
     
     //buffer size will determine accuracy of the fft
     //we want accuracy of 6Hz, 48100/6 = ~8017 buffer size needed
@@ -42,12 +45,9 @@ class ViewController: UIViewController {
             shouldNormalize: false,
             numPointsInGraph: AudioConstants.AUDIO_BUFFER_SIZE)
         
-        
-        
         // start up the audio model here, querying microphone
         audio.startMicrophoneProcessing(withFps: 10)
         audio.play()
-        
         
         // run the loop for updating the graph peridocially
         Timer.scheduledTimer(timeInterval: 0.05, target: self,
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         audio.endAudioProcessing()
     }
 
-    // periodically, update the graph with refreshed FFT Data
+    // periodically, update the graph with refreshed FFT Data and update frequency peaks
     @objc
     func update(){
         self.graph?.updateGraph(
@@ -76,7 +76,21 @@ class ViewController: UIViewController {
         )
         
         peaks = self.audio.fftPeaks
-    } //end updateGraph function
+        peak1Magnitude = 0.0
+        peak2Magnitude = 0.0
+        for (frequency, magnitude) in peaks {
+            if (magnitude > peak1Magnitude) {
+                peak2Magnitude = peak1Magnitude
+                peak2Frequency = peak2Frequency
+                peak1Magnitude = magnitude
+                peak1Frequency = frequency
+            }
+            else if (magnitude > peak2Magnitude) {
+                peak2Magnitude = magnitude
+                peak2Frequency = frequency
+            }
+        }
+    } //end update function
 
 }
 
