@@ -16,12 +16,15 @@ class AudioModel {
     
     // MARK: Properties
     private var BUFFER_SIZE:Int
+
     
     // these properties are for interfacing with the API
+
     // the user can access these arrays at any time and plot them if they like
     var timeData:[Float]
     var fftData:[Float]
     
+
     // Dictionary to hold peak frequencies and magnitudes
     lazy var fftPeaks:[Float:Float] = [:]
     
@@ -31,15 +34,18 @@ class AudioModel {
     // variable containing frequency resolution of data
     var resolution:Float
     
+
     // MARK: Public Methods
     init(buffer_size:Int) {
         BUFFER_SIZE = buffer_size
         // anything not lazily instatntiated should be allocated here
         timeData = Array.init(repeating: 0.0, count: BUFFER_SIZE)
+
         fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2 + 1)
         
         windowSize = 50/(samplingRate/BUFFER_SIZE) - 1
         resolution = Float(samplingRate)/Float(BUFFER_SIZE)
+
     }
     
     // public function for starting processing of microphone data
@@ -114,6 +120,7 @@ class AudioModel {
             //   fftData:  the FFT of those same samples
             // the user can now use these variables however they like
             
+
             fftPeaks.removeAll()
             for j in 1...(BUFFER_SIZE/2 - windowSize) {
                 let end = j + windowSize
@@ -129,6 +136,7 @@ class AudioModel {
                     fftPeaks[fpeak] = mpeak
                 }
             }
+
         }
     }
     
