@@ -16,26 +16,36 @@ class AudioModel {
     
     // MARK: Properties
     private var BUFFER_SIZE:Int
-    // thse properties are for interfaceing with the API
+
+    
+    // these properties are for interfacing with the API
+
     // the user can access these arrays at any time and plot them if they like
     var timeData:[Float]
     var fftData:[Float]
     
-    //Array to hold peaks
-    var fftPeaks:[Float]
+
+    // Dictionary to hold peak frequencies and magnitudes
+    lazy var fftPeaks:[Float:Float] = [:]
+    
     // variable which will hold the window size needed to find peaks at least 50Hz apart
     var windowSize:Int
     
+    // variable containing frequency resolution of data
+    var resolution:Float
+    
+
     // MARK: Public Methods
     init(buffer_size:Int) {
         BUFFER_SIZE = buffer_size
         // anything not lazily instatntiated should be allocated here
         timeData = Array.init(repeating: 0.0, count: BUFFER_SIZE)
-        fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2)
-        fftPeaks = Array.init(repeating: 0.0, count: BUFFER_SIZE/2)
+
+        fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2 + 1)
         
         windowSize = 50/(samplingRate/BUFFER_SIZE) - 1
-        
+        resolution = Float(samplingRate)/Float(BUFFER_SIZE)
+
     }
     
     // public function for starting processing of microphone data
@@ -110,14 +120,23 @@ class AudioModel {
             //   fftData:  the FFT of those same samples
             // the user can now use these variables however they like
             
-            for j in 0...fftPeaks.count {
-                //this var assignment give a warning, ignore it
-                var endIndex = (j+windowSize < BUFFER_SIZE/2) ? (j+windowSize) : BUFFER_SIZE/2-1
-                fftPeaks[j] = fftData[j...endIndex].max()!
+
+            fftPeaks.removeAll()
+            for j in 1...(BUFFER_SIZE/2 - windowSize) {
+                let end = j + windowSize
+                let center = j + windowSize/2
+                if (fftData[center] == fftData[j...end].max()) {
+                    let f2 = resolution * Float(center)
+                    let m1 = Float(fftData[center - 1])
+                    let m2 = Float(fftData[center])
+                    let m3 = Float(fftData[center + 1])
+                    let approximation = (m1 - m3) / (m3 - 2 * m2 + m1)
+                    let fpeak = f2 + approximation * resolution / 2
+                    let mpeak = m2 - (m1 - m3) * fpeak / 4
+                    fftPeaks[fpeak] = mpeak
+                }
             }
-            
-            
-            
+
         }
     }
     
