@@ -22,6 +22,7 @@
 		2EEF784527014553004ABE6F /* FFTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF784127014552004ABE6F /* FFTHelper.m */; };
 		2EEF784627014553004ABE6F /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF784227014552004ABE6F /* Novocaine.m */; };
 		2EEF784727014553004ABE6F /* MetalGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF784327014553004ABE6F /* MetalGraph.swift */; };
+    2EEF7851270293C8004ABE6F /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF7849270293C8004ABE6F /* Shaders.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		2EEF784227014552004ABE6F /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Novocaine.m; sourceTree = "<group>"; };
 		2EEF784327014553004ABE6F /* MetalGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalGraph.swift; sourceTree = "<group>"; };
 		2EEF784427014553004ABE6F /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Novocaine.h; sourceTree = "<group>"; };
+    2EEF7849270293C8004ABE6F /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,7 +290,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EEF78402701453B004ABE6F /* CircularBuffer.m in Sources */,
+				2EEF7852270293C8004ABE6F /* Novocaine.m in Sources */,
+				2EEF7850270293C8004ABE6F /* CircularBuffer.m in Sources */,
+				2EEF7851270293C8004ABE6F /* Shaders.metal in Sources */,
 				2EE7A69826FBD54200744C38 /* ViewControllerTwo.swift in Sources */,
 				2EE7A69626FBD3BA00744C38 /* TableTableViewController.swift in Sources */,
 				2EE7A66A26FBD0EE00744C38 /* ViewController.swift in Sources */,
@@ -297,7 +301,6 @@
 				2EEF784727014553004ABE6F /* MetalGraph.swift in Sources */,
 				2EEF784527014553004ABE6F /* FFTHelper.m in Sources */,
 				2EE7A66826FBD0EE00744C38 /* SceneDelegate.swift in Sources */,
-				2EEF784627014553004ABE6F /* Novocaine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
