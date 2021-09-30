@@ -12,7 +12,7 @@ import Accelerate
 class AudioModel {
     
     // immutable var for sampling rate
-    let samplingRate = 48100
+    var samplingRate = 48100
     
     // MARK: Properties
     private var BUFFER_SIZE:Int
@@ -50,6 +50,10 @@ class AudioModel {
         // setup the microphone to copy to circualr buffer
         if let manager = self.audioManager{
             manager.inputBlock = self.handleMicrophone
+            
+            samplingRate = Int(manager.samplingRate)
+            windowSize = 50/(samplingRate/BUFFER_SIZE) - 1
+            resolution = Float(samplingRate)/Float(BUFFER_SIZE)
             
             // repeat this fps times per second using the timer class
             // every time this is called, we update the arrays "timeData",
