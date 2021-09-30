@@ -14,10 +14,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var Freq1Label: UILabel!
     
     var peaks:[Float:Float] = [:]
-    lazy var peak1Frequency:Float = 0.0
-    lazy var peak1Magnitude:Float = 0.0
-    lazy var peak2Frequency:Float = 0.0
-    lazy var peak2Magnitude:Float = 0.0
     
     //buffer size will determine accuracy of the fft
     //we want accuracy of 6Hz, 48100/6 = ~8017 buffer size needed
@@ -78,24 +74,10 @@ class ViewController: UIViewController {
         
         peaks = self.audio.fftPeaks
         
-        let foundMax1 = peaks.max{a,b in a.value < b.value}
-        peaks.removeValue(forKey: foundMax1!.key)
-        let foundMax2 = peaks.max{a,b in a.value < b.value}
-        
-//        for (frequency, magnitude) in peaks {
-//            if (magnitude > peak1Magnitude) {
-//                peak2Magnitude = peak1Magnitude
-//                peak2Frequency = peak2Frequency
-//                peak1Magnitude = magnitude
-//                peak1Frequency = frequency
-//            }
-//            else if (magnitude > peak2Magnitude) {
-//                peak2Magnitude = magnitude
-//                peak2Frequency = frequency
-//            }
-//        }
-        
         if(!(self.audio.fftMean < -54.2 && self.audio.fftMean > -54.9)) {
+            let foundMax1 = peaks.max{a,b in a.value < b.value}
+            peaks.removeValue(forKey: foundMax1!.key)
+            let foundMax2 = peaks.max{a,b in a.value < b.value}
             DispatchQueue.main.async {
                 self.Freq1Label.text = foundMax1!.key.description
                 self.Freq2Label.text = foundMax2!.key.description
