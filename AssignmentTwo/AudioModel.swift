@@ -51,10 +51,6 @@ class AudioModel {
         if let manager = self.audioManager{
             manager.inputBlock = self.handleMicrophone
             
-            samplingRate = Int(manager.samplingRate)
-            windowSize = 50/(samplingRate/BUFFER_SIZE) - 1
-            resolution = Float(samplingRate)/Float(BUFFER_SIZE)
-            
             // repeat this fps times per second using the timer class
             // every time this is called, we update the arrays "timeData",
             // "fftData", and "fftLog"
@@ -75,6 +71,9 @@ class AudioModel {
     func play(){
         if let manager = self.audioManager{
             manager.play()
+            samplingRate = Int(manager.samplingRate)
+            windowSize = 50/(samplingRate/BUFFER_SIZE) - 1
+            resolution = Float(samplingRate)/Float(BUFFER_SIZE)
         }
     }
     

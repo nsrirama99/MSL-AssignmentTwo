@@ -21,9 +21,10 @@ class ViewController: UIViewController {
     
     //buffer size will determine accuracy of the fft
     //we want accuracy of 6Hz, 48100/6 = ~8017 buffer size needed
-    //for standardization we will use a multiple of 1024, so 1024*8 will be the buffer size
+    //However we will also be interpolating, so we can get away with
+    //a smaller buffer size, so we will use 1024*4 (power of 2 needs to be maintained)
     struct AudioConstants{
-        static let AUDIO_BUFFER_SIZE = 1024*8
+        static let AUDIO_BUFFER_SIZE = 1024*4
     }
     
     // setup audio model
