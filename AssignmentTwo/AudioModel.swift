@@ -145,7 +145,7 @@ class AudioModel {
                 fftLog[j] = log10(fftData[j])
             }
             
-            print(fftLog[0])
+            //print(fftLog[0])
             print(fftData[0])
         }
     }

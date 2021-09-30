@@ -90,6 +90,14 @@ class ViewController: UIViewController {
                 peak2Frequency = frequency
             }
         }
+        
+        if(self.audio.fftData[0] > -40) {
+            DispatchQueue.main.async {
+                self.Freq1Label.text = self.peak1Frequency.description
+                self.Freq2Label.text = self.peak2Frequency.description
+            }
+        }
+
     } //end update function
 
 }
