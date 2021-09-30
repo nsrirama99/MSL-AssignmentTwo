@@ -53,6 +53,11 @@ class AudioModel {
         }
     }
     
+    func startProcessingSinewaveForPlayback(withFreq:Float = 330.0){
+        sineFrequency = withFreq
+        self.audioManager?.setOutputBlockToPlaySineWave(sineFrequency)
+    }
+    
     
     // You must call this when you want the audio to start being handled by our model
     func play(){
@@ -110,11 +115,11 @@ class AudioModel {
             //   fftData:  the FFT of those same samples
             // the user can now use these variables however they like
             
-            for j in 0...fftPeaks.count {
-                //this var assignment give a warning, ignore it
-                var endIndex = (j+windowSize < BUFFER_SIZE/2) ? (j+windowSize) : BUFFER_SIZE/2-1
-                fftPeaks[j] = fftData[j...endIndex].max()!
-            }
+//            for j in 0...fftPeaks.count {
+//                //this var assignment give a warning, ignore it
+//                var endIndex = (j+windowSize < BUFFER_SIZE/2) ? (j+windowSize) : BUFFER_SIZE/2-1
+//                fftPeaks[j] = fftData[j...endIndex].max()!
+//            }
             
             
             
@@ -125,6 +130,14 @@ class AudioModel {
     // MARK: Audiocard Callbacks
     // in obj-C it was (^InputBlock)(float *data, UInt32 numFrames, UInt32 numChannels)
     // and in swift this translates to:
+    
+    var sineFrequency:Float = 0.0{
+        didSet{
+            if let manager = self.audioManager{
+                manager.sineFrequency = sineFrequency
+            }
+        }
+    }
     private func handleMicrophone (data:Optional<UnsafeMutablePointer<Float>>, numFrames:UInt32, numChannels: UInt32) {
         // copy samples from the microphone into circular buffer
         self.inputBuffer?.addNewFloatData(data, withNumSamples: Int64(numFrames))
