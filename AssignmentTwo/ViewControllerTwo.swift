@@ -27,14 +27,19 @@ class ViewControllerTwo: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        graph?.addGraph(withName: "fft",
+//        graph?.addGraph(withName: "fft",
+//                        shouldNormalize: true,
+//                        numPointsInGraph: AUDIO_BUFFER_SIZE/2)
+        
+        graph?.addGraph(withName: "fftLog",
                         shouldNormalize: true,
-                        numPointsInGraph: AUDIO_BUFFER_SIZE)
+                        numPointsInGraph: AUDIO_BUFFER_SIZE/2)
+
         
         
         audio.startMicrophoneProcessing(withFps: 10)
         
-        audio.startProcessingSinewaveForPlayback(withFreq: 15)
+        audio.startProcessingSinewaveForPlayback(withFreq: 15000)
         audio.play();
         
         
@@ -60,9 +65,14 @@ class ViewControllerTwo: UIViewController {
     
     @objc
     func updateGraph(){
+//        self.graph?.updateGraph(
+//            data: self.audio.fftData,
+//            forKey: "fft"
+//        )
+        
         self.graph?.updateGraph(
-            data: self.audio.fftData,
-            forKey: "fft"
+            data: self.audio.fftLog,
+            forKey: "fftLog"
         )
     }
     

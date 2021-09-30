@@ -141,8 +141,12 @@ class AudioModel {
             
             // update fftLog array
             for j in 0...(BUFFER_SIZE/2) {
-                fftLog[j] = log(fftData[j])
+                
+                fftLog[j] = log10(fftData[j])
             }
+            
+            print(fftLog[0])
+            print(fftData[0])
         }
     }
     
