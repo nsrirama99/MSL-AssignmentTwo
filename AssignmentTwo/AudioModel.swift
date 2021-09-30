@@ -20,7 +20,6 @@ class AudioModel {
     // the user can access these arrays at any time and plot them if they like
     var timeData:[Float]
     var fftData:[Float]
-    var fftLog:[Float]
     var fftMean:Float
     
     // Dictionary to hold peak frequencies and magnitudes
@@ -38,13 +37,13 @@ class AudioModel {
         BUFFER_SIZE = buffer_size
         // anything not lazily instatntiated should be allocated here
         timeData = Array.init(repeating: 0.0, count: BUFFER_SIZE)
-        fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2) // + 1
-        fftLog = Array.init(repeating: 0.0, count: BUFFER_SIZE/2) // + 1
+        fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2)
+        fftLog = Array.init(repeating: 0.0, count: BUFFER_SIZE/2)
         
         resolution = Float(samplingRate)/Float(BUFFER_SIZE)
         windowSize = 50/Int(resolution) //- 1
         
-        fftMean = 0
+        fftMean = 0.0
     }
 
     // public function for starting processing of microphone data
@@ -146,17 +145,9 @@ class AudioModel {
                     fftPeaks[fpeak] = mpeak
                     
                     print(center)
-                    //print(fpeak.description + " " + mpeak.description)
                 }
             }
             
-            // update fftLog array
-//            for j in 0..<(BUFFER_SIZE/2) {
-//                
-//                fftLog[j] = log10(fftData[j])
-//            }
-            
-            //print(fftLog[0])
             vDSP_meanv(fftData, vDSP_Stride(1), &fftMean, vDSP_Length(fftData.count))
             //print(fftMean.description + " " + fftData[0].description)
         }
