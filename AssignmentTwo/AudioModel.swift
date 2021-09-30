@@ -20,6 +20,7 @@ class AudioModel {
     // the user can access these arrays at any time and plot them if they like
     var timeData:[Float]
     var fftData:[Float]
+    var fftLog:[Float]
     
     // Dictionary to hold peak frequencies and magnitudes
     lazy var fftPeaks:[Float:Float] = [:]
@@ -36,8 +37,8 @@ class AudioModel {
         BUFFER_SIZE = buffer_size
         // anything not lazily instatntiated should be allocated here
         timeData = Array.init(repeating: 0.0, count: BUFFER_SIZE)
-
         fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2 + 1)
+        fftLog = Array.init(repeating: 0.0, count: BUFFER_SIZE/2 + 1)
         
         windowSize = 50/(samplingRate/BUFFER_SIZE) - 1
         resolution = Float(samplingRate)/Float(BUFFER_SIZE)
@@ -51,7 +52,8 @@ class AudioModel {
             manager.inputBlock = self.handleMicrophone
             
             // repeat this fps times per second using the timer class
-            //   every time this is called, we update the arrays "timeData" and "fftData"
+            // every time this is called, we update the arrays "timeData",
+            // "fftData", and "fftLog"
             Timer.scheduledTimer(timeInterval: 1.0/withFps, target: self,
                                  selector: #selector(self.runEveryInterval),
                                  userInfo: nil,
@@ -136,7 +138,11 @@ class AudioModel {
                     fftPeaks[fpeak] = mpeak
                 }
             }
-
+            
+            // update fftLog array
+            for j in 0...(BUFFER_SIZE/2) {
+                fftLog[j] = log(fftData[j])
+            }
         }
     }
     
