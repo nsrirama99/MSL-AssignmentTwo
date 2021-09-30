@@ -21,6 +21,7 @@ class AudioModel {
     var timeData:[Float]
     var fftData:[Float]
     var fftLog:[Float]
+    var fftMean:Float
     
     // Dictionary to hold peak frequencies and magnitudes
     lazy var fftPeaks:[Float:Float] = [:]
@@ -37,12 +38,13 @@ class AudioModel {
         BUFFER_SIZE = buffer_size
         // anything not lazily instatntiated should be allocated here
         timeData = Array.init(repeating: 0.0, count: BUFFER_SIZE)
-        fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2 + 1)
-        fftLog = Array.init(repeating: 0.0, count: BUFFER_SIZE/2 + 1)
+        fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2) // + 1
+        fftLog = Array.init(repeating: 0.0, count: BUFFER_SIZE/2) // + 1
         
-        windowSize = 50/(samplingRate/BUFFER_SIZE) - 1
         resolution = Float(samplingRate)/Float(BUFFER_SIZE)
-
+        windowSize = 50/Int(resolution) //- 1
+        
+        fftMean = 0
     }
 
     // public function for starting processing of microphone data
@@ -72,8 +74,11 @@ class AudioModel {
         if let manager = self.audioManager{
             manager.play()
             samplingRate = Int(manager.samplingRate)
-            windowSize = 50/(samplingRate/BUFFER_SIZE) - 1
             resolution = Float(samplingRate)/Float(BUFFER_SIZE)
+            windowSize = 50/Int(resolution)
+
+            
+            print(resolution.description + " " + windowSize.description)
         }
     }
     
@@ -127,10 +132,10 @@ class AudioModel {
             
 
             fftPeaks.removeAll()
-            for j in 1...(BUFFER_SIZE/2 - windowSize) {
+            for j in 0...(BUFFER_SIZE/2 - windowSize) {
                 let end = j + windowSize
                 let center = j + windowSize/2
-                if (fftData[center] == fftData[j...end].max()) {
+                if (fftData[center] == fftData[j..<end].max()) {
                     let f2 = resolution * Float(center)
                     let m1 = Float(fftData[center - 1])
                     let m2 = Float(fftData[center])
@@ -139,17 +144,21 @@ class AudioModel {
                     let fpeak = f2 + approximation * resolution / 2
                     let mpeak = m2 - (m1 - m3) * fpeak / 4
                     fftPeaks[fpeak] = mpeak
+                    
+                    print(center)
+                    //print(fpeak.description + " " + mpeak.description)
                 }
             }
             
             // update fftLog array
-            for j in 0...(BUFFER_SIZE/2) {
-                
-                fftLog[j] = log10(fftData[j])
-            }
+//            for j in 0..<(BUFFER_SIZE/2) {
+//                
+//                fftLog[j] = log10(fftData[j])
+//            }
             
             //print(fftLog[0])
-            print(fftData[0])
+            vDSP_meanv(fftData, vDSP_Stride(1), &fftMean, vDSP_Length(fftData.count))
+            //print(fftMean.description + " " + fftData[0].description)
         }
     }
     

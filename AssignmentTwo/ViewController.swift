@@ -21,8 +21,8 @@ class ViewController: UIViewController {
     
     //buffer size will determine accuracy of the fft
     //we want accuracy of 6Hz, 48100/6 = ~8017 buffer size needed
-    //However we will also be interpolating, so we can get away with
-    //a smaller buffer size, so we will use 1024*4 (power of 2 needs to be maintained)
+    //However we will also be interpolating frequencies, so we can get away with
+    //a smaller buffer size, so we will use 1024*4 (power of 2 should be maintained)
     struct AudioConstants{
         static let AUDIO_BUFFER_SIZE = 1024*4
     }
@@ -92,7 +92,7 @@ class ViewController: UIViewController {
             }
         }
         
-        if(self.audio.fftData[0] > -40) {
+        if(!(self.audio.fftMean < -54.2 && self.audio.fftMean > -54.9)) {
             DispatchQueue.main.async {
                 self.Freq1Label.text = self.peak1Frequency.description
                 self.Freq2Label.text = self.peak2Frequency.description
