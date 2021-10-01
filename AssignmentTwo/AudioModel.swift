@@ -16,10 +16,12 @@ class AudioModel {
     
     // MARK: Properties
     private var BUFFER_SIZE:Int
-    // thse properties are for interfaceing with the API
-    // the user can access these arrays at any time and plot them if they like
+    
+    // Time 
     var timeData:[Float]
     var fftData:[Float]
+    
+    // Holds the exponentially weighted moving average of frequency magnitudes
     var fftMean:Float
     
     // Dictionary to hold peak frequencies and magnitudes
@@ -38,10 +40,10 @@ class AudioModel {
         // anything not lazily instatntiated should be allocated here
         timeData = Array.init(repeating: 0.0, count: BUFFER_SIZE)
         fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2)
-        fftMean = -100.0
+        fftMean = -100.0 //Initialize moving average to -100 dB
         
         resolution = Float(samplingRate)/Float(BUFFER_SIZE)
-        windowSize = 80/Int(resolution) //- 1
+        windowSize = 80/Int(resolution) // 80 Hz window
     }
 
     // public function for starting processing of microphone data
@@ -127,6 +129,7 @@ class AudioModel {
             // the user can now use these variables however they like
             
 
+            // Find peaks in frequency magnitues and perform quadratic interpolation
             fftPeaks.removeAll()
             for j in 0...(BUFFER_SIZE/2 - windowSize) {
                 let end = j + windowSize
@@ -142,6 +145,7 @@ class AudioModel {
                 }
             }
             
+            // Update frequency magnitude moving average
             var temp:Float = 0.0
             vDSP_meanv(fftData, vDSP_Stride(1), &temp, vDSP_Length(fftData.count))
             fftMean += 0.2*(temp-fftMean)
