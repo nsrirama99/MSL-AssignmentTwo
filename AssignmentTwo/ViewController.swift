@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var Freq2Label: UILabel!
     @IBOutlet weak var Freq1Label: UILabel!
     
+    // Dicionary to store peaks found in audio model
     var peaks:[Float:Float] = [:]
     
     //buffer size will determine accuracy of the fft
@@ -72,14 +73,17 @@ class ViewController: UIViewController {
             forKey: "time"
         )
         
+        // Grab most recent peak data from audio model
         peaks = self.audio.fftPeaks
 
+        // Select the two highest frequency peaks
         let foundMax1 = peaks.max{a,b in a.value < b.value}
         if((foundMax1) != nil) {
             peaks.removeValue(forKey: foundMax1!.key)
         }
         let foundMax2 = peaks.max{a,b in a.value < b.value}
         
+        // Update labels if the frequency peaks are 70 dB greater than the moving average
         if let hopeItsNotNull = foundMax1 {
             if(hopeItsNotNull.value >= self.audio.fftMean+70) {
                 DispatchQueue.main.async {
