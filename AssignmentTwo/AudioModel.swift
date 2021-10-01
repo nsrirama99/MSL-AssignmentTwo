@@ -20,8 +20,6 @@ class AudioModel {
     // the user can access these arrays at any time and plot them if they like
     var timeData:[Float]
     var fftData:[Float]
-    var fftMeanArray:[Float]
-    var meanIndex:Int
     var fftMean:Float
     
     // Dictionary to hold peak frequencies and magnitudes
@@ -40,9 +38,7 @@ class AudioModel {
         // anything not lazily instatntiated should be allocated here
         timeData = Array.init(repeating: 0.0, count: BUFFER_SIZE)
         fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2)
-        fftMeanArray = Array.init(repeating: 0.0, count: 20)
-        meanIndex = 0
-        fftMean = 0
+        fftMean = -100.0
         
         resolution = Float(samplingRate)/Float(BUFFER_SIZE)
         windowSize = 80/Int(resolution) //- 1
@@ -76,7 +72,7 @@ class AudioModel {
             manager.play()
             samplingRate = Int(manager.samplingRate)
             resolution = Float(samplingRate)/Float(BUFFER_SIZE)
-            windowSize = 50/Int(resolution)
+            windowSize = 60/Int(resolution)
 
             
             print(resolution.description + " " + windowSize.description)
@@ -84,7 +80,6 @@ class AudioModel {
     }
     
     func endAudioProcessing() {
-        //self.audioManager?.pause()
         if let manager = self.audioManager{
             manager.pause()
             manager.inputBlock = nil
@@ -144,19 +139,12 @@ class AudioModel {
                     let fpeak = (Float(center) + approximation) * resolution
                     let mpeak = m2 - (m1 - m3) * approximation / 4
                     fftPeaks[fpeak] = mpeak
-                    
-                    //print(center)
-                    print(mpeak)
                 }
             }
             
-            vDSP_meanv(fftData, vDSP_Stride(1), &fftMeanArray[meanIndex], vDSP_Length(fftData.count))
-            
-            meanIndex = (meanIndex + 1)%10
-            
-            vDSP_meanv(fftMeanArray, vDSP_Stride(1), &fftMean, vDSP_Length(10))
-            //print(fftMean.description)
-
+            var temp:Float = 0.0
+            vDSP_meanv(fftData, vDSP_Stride(1), &temp, vDSP_Length(fftData.count))
+            fftMean += 0.2*(temp-fftMean)
         }
     }
     

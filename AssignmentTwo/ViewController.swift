@@ -81,20 +81,13 @@ class ViewController: UIViewController {
         let foundMax2 = peaks.max{a,b in a.value < b.value}
         
         if let hopeItsNotNull = foundMax1 {
-            if(hopeItsNotNull.value >= self.audio.fftMean+30) {
+            if(hopeItsNotNull.value >= self.audio.fftMean+70) {
                 DispatchQueue.main.async {
                     self.Freq1Label.text = foundMax1?.key.description
                     self.Freq2Label.text = foundMax2?.key.description
                 }
             }
         }
-        
-//        if(foundMax1!.value >= 1.5*self.audio.fftMean) {
-//            DispatchQueue.main.async {
-//                self.Freq1Label.text = foundMax1?.key.description
-//                self.Freq2Label.text = foundMax2?.key.description
-//            }
-//        }
 
     } //end update function
 
