@@ -137,12 +137,12 @@ class AudioModel {
                 let end = j + windowSize
                 let center = j + windowSize/2
                 if (fftData[center] == fftData[j..<end].max()) {
-                    let f2 = resolution * Float(center)
                     let m1 = Float(fftData[center - 1])
                     let m2 = Float(fftData[center])
                     let m3 = Float(fftData[center + 1])
-                    let fpeak = (m1 - m3) / (m1 - 2 * m2 + m3) / 2
-                    let mpeak = m2 - (m1 - m3) * fpeak / 4
+                    let approximation = (m1 - m3) / (m1 - 2 * m2 + m3) / 2
+                    let fpeak = (Float(center) + approximation) * resolution
+                    let mpeak = m2 - (m1 - m3) * approximation / 4
                     fftPeaks[fpeak] = mpeak
                     
                     //print(center)
