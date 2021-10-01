@@ -141,8 +141,7 @@ class AudioModel {
                     let m1 = Float(fftData[center - 1])
                     let m2 = Float(fftData[center])
                     let m3 = Float(fftData[center + 1])
-                    let approximation = (m1 - m3) / (m3 - 2 * m2 + m1)
-                    let fpeak = f2 + approximation * (resolution / 2)
+                    let fpeak = (m1 - m3) / (m1 - 2 * m2 + m3) / 2
                     let mpeak = m2 - (m1 - m3) * fpeak / 4
                     fftPeaks[fpeak] = mpeak
                     
