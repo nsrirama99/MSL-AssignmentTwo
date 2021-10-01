@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     //However we will also be interpolating frequencies, so we can get away with
     //a smaller buffer size, so we will use 1024*4 (power of 2 should be maintained)
     struct AudioConstants{
-        static let AUDIO_BUFFER_SIZE = 1024*4
+        static let AUDIO_BUFFER_SIZE = 1024*8
     }
     
     // setup audio model
@@ -73,16 +73,28 @@ class ViewController: UIViewController {
         )
         
         peaks = self.audio.fftPeaks
-        
-        if(!(self.audio.fftMean < -54.2 && self.audio.fftMean > -54.9)) {
-            let foundMax1 = peaks.max{a,b in a.value < b.value}
+
+        let foundMax1 = peaks.max{a,b in a.value < b.value}
+        if((foundMax1) != nil) {
             peaks.removeValue(forKey: foundMax1!.key)
-            let foundMax2 = peaks.max{a,b in a.value < b.value}
-            DispatchQueue.main.async {
-                self.Freq1Label.text = foundMax1!.key.description
-                self.Freq2Label.text = foundMax2!.key.description
+        }
+        let foundMax2 = peaks.max{a,b in a.value < b.value}
+        
+        if let hopeItsNotNull = foundMax1 {
+            if(hopeItsNotNull.value >= self.audio.fftMean+30) {
+                DispatchQueue.main.async {
+                    self.Freq1Label.text = foundMax1?.key.description
+                    self.Freq2Label.text = foundMax2?.key.description
+                }
             }
         }
+        
+//        if(foundMax1!.value >= 1.5*self.audio.fftMean) {
+//            DispatchQueue.main.async {
+//                self.Freq1Label.text = foundMax1?.key.description
+//                self.Freq2Label.text = foundMax2?.key.description
+//            }
+//        }
 
     } //end update function
 

@@ -20,6 +20,8 @@ class AudioModel {
     // the user can access these arrays at any time and plot them if they like
     var timeData:[Float]
     var fftData:[Float]
+    var fftMeanArray:[Float]
+    var meanIndex:Int
     var fftMean:Float
     
     // Dictionary to hold peak frequencies and magnitudes
@@ -38,12 +40,12 @@ class AudioModel {
         // anything not lazily instatntiated should be allocated here
         timeData = Array.init(repeating: 0.0, count: BUFFER_SIZE)
         fftData = Array.init(repeating: 0.0, count: BUFFER_SIZE/2)
-        fftLog = Array.init(repeating: 0.0, count: BUFFER_SIZE/2)
+        fftMeanArray = Array.init(repeating: 0.0, count: 20)
+        meanIndex = 0
+        fftMean = 0
         
         resolution = Float(samplingRate)/Float(BUFFER_SIZE)
-        windowSize = 50/Int(resolution) //- 1
-        
-        fftMean = 0.0
+        windowSize = 80/Int(resolution) //- 1
     }
 
     // public function for starting processing of microphone data
@@ -54,7 +56,7 @@ class AudioModel {
             
             // repeat this fps times per second using the timer class
             // every time this is called, we update the arrays "timeData",
-            // "fftData", and "fftLog"
+            // "fftData"
             Timer.scheduledTimer(timeInterval: 1.0/withFps, target: self,
                                  selector: #selector(self.runEveryInterval),
                                  userInfo: nil,
@@ -144,12 +146,18 @@ class AudioModel {
                     let mpeak = m2 - (m1 - m3) * fpeak / 4
                     fftPeaks[fpeak] = mpeak
                     
-                    print(center)
+                    //print(center)
+                    print(mpeak)
                 }
             }
             
-            vDSP_meanv(fftData, vDSP_Stride(1), &fftMean, vDSP_Length(fftData.count))
-            //print(fftMean.description + " " + fftData[0].description)
+            vDSP_meanv(fftData, vDSP_Stride(1), &fftMeanArray[meanIndex], vDSP_Length(fftData.count))
+            
+            meanIndex = (meanIndex + 1)%10
+            
+            vDSP_meanv(fftMeanArray, vDSP_Stride(1), &fftMean, vDSP_Length(10))
+            //print(fftMean.description)
+
         }
     }
     
