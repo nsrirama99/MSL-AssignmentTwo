@@ -8,7 +8,9 @@
 import UIKit
 import Metal
 
-let AUDIO_BUFFER_SIZE = 1024*8
+//global variables
+let AUDIO_BUFFER_SIZE = Int(SAMPLING_RATE / 6) + 192
+let SAMPLING_RATE = 48000
 
 
 class ViewControllerTwo: UIViewController {
@@ -17,6 +19,7 @@ class ViewControllerTwo: UIViewController {
     @IBOutlet weak var GestureLabel: UILabel!
     
     @IBOutlet weak var freqLabel: UILabel!
+    
     // setup audio model
     let audio = AudioModel(buffer_size: AUDIO_BUFFER_SIZE)
     
@@ -27,16 +30,29 @@ class ViewControllerTwo: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //display graph with fftZoom
         graph?.addGraph(withName: "fft",
                         shouldNormalize: true,
-                        numPointsInGraph: AUDIO_BUFFER_SIZE/2)
-
+                        numPointsInGraph: self.audio.fftZoom.count)
         
         
-        audio.startMicrophoneProcessing(withFps: 10)
+        freqLabel.text = "15000"
+        GestureLabel.text = ""
         
+        //run the processing to figure out hand movement to phone
+        audio.startMicrophoneProcessingB(withFps: 10)
         audio.startProcessingSinewaveForPlayback(withFreq: 15000)
+        
         audio.play();
+        
+        //start the graph output to base value
+        self.audio.sineFrequency = 15000
+        freqLabel.text = "Frequency: 15000"
+        
+        //create the index for value of slider
+        let focusIndex = Int(Float(15000) / (Float(SAMPLING_RATE)/Float(AUDIO_BUFFER_SIZE)))
+
+        self.audio.changeFocus(index: focusIndex)
         
         
         Timer.scheduledTimer(timeInterval: 0.05, target: self,
@@ -55,17 +71,26 @@ class ViewControllerTwo: UIViewController {
        }
     
     @IBAction func changeFrequency(_ sender: UISlider) {
+        
+        //sets the current sin wave frequency to the value of slider
         self.audio.sineFrequency = sender.value
         freqLabel.text = "Frequency: \(sender.value)"
+        
+        //create the index for value of slider
+        let focusIndex = Int(Float(sender.value) / (Float(SAMPLING_RATE)/Float(AUDIO_BUFFER_SIZE)))
+
+        self.audio.changeFocus(index: focusIndex)
     }
     
     @objc
     func updateGraph(){
         self.graph?.updateGraph(
-            data: self.audio.fftData,
+            data: self.audio.fftZoom,
             forKey: "fft"
         )
         
+        GestureLabel.text = audio.message
+
     }
     
     /*
@@ -79,3 +104,4 @@ class ViewControllerTwo: UIViewController {
     */
 
 }
+
